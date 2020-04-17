@@ -126,7 +126,10 @@ public class ReactMediaInputManager extends ReactTextInputManager {
 
                 EditorInfoCompat.setContentMimeTypes(outAttrs, new String [] {
                         "image/png",
-                        "image/gif"
+                        "image/gif",
+                        "image/jpg",
+                        "image/jpeg",
+                        "image/webp"
                 });
 
                 final InputConnectionCompat.OnCommitContentListener callback =
