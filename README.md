@@ -30,3 +30,7 @@ const App = () => {
   return <TextInput onImageChange={_onImageChange} />;
 }
 ```
+
+## Credits
+
+Android logic based on [stwiname](https://github.com/stwiname)'s PR: https://github.com/facebook/react-native/pull/26088
