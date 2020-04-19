@@ -2,22 +2,30 @@
   "name": "react-native-media-input",
   "title": "React Native Media Input",
   "version": "1.0.0",
-  "description": "TODO",
+  "description": "Enables clipboard image pasting and GIFs from TextInput.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/github_account/react-native-media-input.git",
-    "baseUrl": "https://github.com/github_account/react-native-media-input"
+    "url": "git+https://github.com/Gustash/react-native-media-input.git",
+    "baseUrl": "https://github.com/Gustash/react-native-media-input"
   },
   "keywords": [
-    "react-native"
+    "react-native",
+    "text-input",
+    "gif",
+    "png",
+    "clipboard",
+    "ime",
+    "gboard",
+    "stickers",
+    "media"
   ],
   "author": {
-    "name": "Your Name",
-    "email": "yourname@email.com"
+    "name": "Gustavo Parreira",
+    "email": "gustavotcparreira@gmail.com"
   },
   "license": "MIT",
   "licenseFilename": "LICENSE",
