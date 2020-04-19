@@ -24,11 +24,9 @@ const App: () => React$Node = () => {
   const [selectedMediaUri, setSelectedMediaUri] = useState<?String>(null);
 
   const onMedia = useCallback(({nativeEvent}) => {
-    const {linkUri} = nativeEvent;
+    const {uri} = nativeEvent;
 
-    console.log({linkUri});
-
-    setSelectedMediaUri(linkUri);
+    setSelectedMediaUri(uri);
   }, []);
 
   return (

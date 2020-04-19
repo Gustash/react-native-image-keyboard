@@ -3,6 +3,6 @@
 
 @interface RCTBaseTextInputView (MediaInput)
 
-@property (nonatomic, copy) RCTBubblingEventBlock onMediaInput;
+@property (nonatomic, copy, nullable) RCTDirectEventBlock onMediaInput;
 
 @end

@@ -1,31 +1,99 @@
 #import "RCTBaseTextInputView+MediaInput.h"
-
-#import "React/RCTBridge.h"
+#import "NSData+mimeTypeByGuessingFromData.h"
+#include <objc/runtime.h>
+@import MobileCoreServices;
 
 @implementation RCTBaseTextInputView (MediaInput)
+static char key;
+static NSArray *acceptedTypes;
 
-- (void)paste:(id)sender{
++ (void)initialize {
+    acceptedTypes = @[(NSString *)kUTTypePNG,
+                      (NSString *)kUTTypeGIF,
+                      (NSString *)kUTTypeJPEG];
+}
 
-    UIImage *image = [UIPasteboard generalPasteboard].image;
+- (void)setOnMediaInput:(RCTDirectEventBlock)onMediaInput
+{
+    objc_setAssociatedObject(self, &key, onMediaInput, OBJC_ASSOCIATION_RETAIN);
+}
 
-    if (image) {
-        NSData *png = UIImagePNGRepresentation(image);
-        NSString *base64 = [png base64EncodedStringWithOptions:0];
+- (RCTDirectEventBlock)onMediaInput
+{
+    return objc_getAssociatedObject(self, &key);
+}
 
-        NSArray<NSString*> *paths = NSSearchPathForDirectoriesInDomains(
-                                                                        NSDocumentDirectory,
-                                                                        NSUserDomainMask,
-                                                                        YES);
-        NSString *path = [NSString stringWithFormat:@"%@/%@", paths[0], @"image.png"];
+- (BOOL)pasteboardHasImages
+{
+    if (@available(iOS 10.0, *)) {
+        return [UIPasteboard generalPasteboard].hasImages;
+    } else {
+        return (BOOL)[self extractImageFromPasteboard];
+    }
+}
 
-        [png writeToFile:path atomically:YES];
+- (NSData *)extractImageFromPasteboard
+{
+    UIPasteboard *generalPasteboard = [UIPasteboard generalPasteboard];
 
-        NSLog(@"%@", path);
+    for (NSString* type in acceptedTypes) {
+        NSData *data = [generalPasteboard dataForPasteboardType:type];
 
-        NSTextAttachment *textAttachment = [[NSTextAttachment alloc] init];
-        textAttachment.image = image;
-        NSAttributedString *imageString = [NSAttributedString attributedStringWithAttachment:textAttachment];
-        self.attributedText = imageString;
+        if (data) {
+            return data;
+        }
+    }
+
+    return nil;
+}
+
+- (void)paste:(id)sender
+{
+    if (!self.onMediaInput) {
+        [super paste:sender];
+        return;
+    }
+
+    BOOL hasImage;
+    NSData *image;
+    if (@available(iOS 10.0, *)) {
+        hasImage = [UIPasteboard generalPasteboard].hasImages;
+    } else {
+        image = [self extractImageFromPasteboard];
+        hasImage = (BOOL) image;
+    }
+
+    if (hasImage) {
+        if (@available(iOS 10.0, *)) {
+            image = [self extractImageFromPasteboard];
+        }
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            NSString *mimeType = [image mimeTypeByGuessingFromData];
+            NSString *fileExtension = [mimeType stringByReplacingOccurrencesOfString:@"image/"
+                                                                          withString:@""];
+
+            NSString *base64 = [image base64EncodedStringWithOptions:0];
+
+            NSArray<NSString*> *paths = NSSearchPathForDirectoriesInDomains(
+                                                                            NSDocumentDirectory,
+                                                                            NSUserDomainMask,
+                                                                            YES);
+            NSUUID *uuid = [NSUUID UUID];
+            NSString *uniqueFileName = [uuid UUIDString];
+            NSString *path = [NSString stringWithFormat:@"%@/%@.%@",
+                              paths[0],
+                              uniqueFileName,
+                              fileExtension];
+
+            [image writeToFile:path atomically:YES];
+
+            NSLog(@"%@", path);
+            self.onMediaInput(@{
+                @"data": base64,
+                @"uri": path,
+                @"mime": mimeType,
+                              });
+        });
     } else {
         // Call the normal paste action
         [super paste:sender];
@@ -34,10 +102,11 @@
 
 - (BOOL)canPerformAction:(SEL)action withSender:(id)sender
 {
-    if (action == @selector(paste:) && [UIPasteboard generalPasteboard].image)
-        return YES;
-    else
-        return [super canPerformAction:action withSender:sender];
+    if (action == @selector(paste:) && [self pasteboardHasImages]) {
+        return (BOOL)self.onMediaInput;
+    }
+
+    return [super canPerformAction:action withSender:sender];
 }
 
 @end

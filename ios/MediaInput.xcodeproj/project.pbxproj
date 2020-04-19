@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B3E7B58A1CC2AC0600A0062D /* MediaInput.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E7B5891CC2AC0600A0062D /* MediaInput.m */; };
+		A0567410244CBC4C00E31645 /* RCTBaseTextInputView+MediaInput.m in Sources */ = {isa = PBXBuildFile; fileRef = A056740E244CBC4C00E31645 /* RCTBaseTextInputView+MediaInput.m */; };
+		A0567415244CBC7500E31645 /* NSData+mimeTypeByGuessingFromData.m in Sources */ = {isa = PBXBuildFile; fileRef = A0567412244CBC7500E31645 /* NSData+mimeTypeByGuessingFromData.m */; };
+		A0567416244CBC7500E31645 /* RCTBaseTextInputViewManager+MediaInput.m in Sources */ = {isa = PBXBuildFile; fileRef = A0567413244CBC7500E31645 /* RCTBaseTextInputViewManager+MediaInput.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -24,8 +26,12 @@
 
 /* Begin PBXFileReference section */
 		134814201AA4EA6300B7C361 /* libMediaInput.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMediaInput.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		B3E7B5881CC2AC0600A0062D /* RCTBaseTextInputView+MediaInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RCTBaseTextInputView+MediaInput.h; sourceTree = "<group>"; };
-		B3E7B5891CC2AC0600A0062D /* RCTBaseTextInputView+MediaInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RCTBaseTextInputView+MediaInput.m; sourceTree = "<group>"; };
+		A056740E244CBC4C00E31645 /* RCTBaseTextInputView+MediaInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RCTBaseTextInputView+MediaInput.m"; sourceTree = "<group>"; };
+		A056740F244CBC4C00E31645 /* RCTBaseTextInputView+MediaInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RCTBaseTextInputView+MediaInput.h"; sourceTree = "<group>"; };
+		A0567411244CBC7500E31645 /* NSData+mimeTypeByGuessingFromData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+mimeTypeByGuessingFromData.h"; sourceTree = "<group>"; };
+		A0567412244CBC7500E31645 /* NSData+mimeTypeByGuessingFromData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+mimeTypeByGuessingFromData.m"; sourceTree = "<group>"; };
+		A0567413244CBC7500E31645 /* RCTBaseTextInputViewManager+MediaInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RCTBaseTextInputViewManager+MediaInput.m"; sourceTree = "<group>"; };
+		A0567414244CBC7500E31645 /* RCTBaseTextInputViewManager+MediaInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RCTBaseTextInputViewManager+MediaInput.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,8 +56,12 @@
 		58B511D21A9E6C8500147676 = {
 			isa = PBXGroup;
 			children = (
-				B3E7B5881CC2AC0600A0062D /* RCTBaseTextInputView+MediaInput.h */,
-				B3E7B5891CC2AC0600A0062D /* RCTBaseTextInputView+MediaInput.m */,
+				A0567411244CBC7500E31645 /* NSData+mimeTypeByGuessingFromData.h */,
+				A0567412244CBC7500E31645 /* NSData+mimeTypeByGuessingFromData.m */,
+				A0567414244CBC7500E31645 /* RCTBaseTextInputViewManager+MediaInput.h */,
+				A0567413244CBC7500E31645 /* RCTBaseTextInputViewManager+MediaInput.m */,
+				A056740F244CBC4C00E31645 /* RCTBaseTextInputView+MediaInput.h */,
+				A056740E244CBC4C00E31645 /* RCTBaseTextInputView+MediaInput.m */,
 				134814211AA4EA7D00B7C361 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -95,6 +105,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = 58B511D21A9E6C8500147676;
@@ -112,7 +123,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B3E7B58A1CC2AC0600A0062D /* RCTBaseTextInputView+MediaInput.m in Sources */,
+				A0567415244CBC7500E31645 /* NSData+mimeTypeByGuessingFromData.m in Sources */,
+				A0567410244CBC4C00E31645 /* RCTBaseTextInputView+MediaInput.m in Sources */,
+				A0567416244CBC7500E31645 /* RCTBaseTextInputViewManager+MediaInput.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,7 +229,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				HEADER_SEARCH_PATHS = (
-				"$(inherited)",
+					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/../../../React/**",
 					"$(SRCROOT)/../../react-native/React/**",
