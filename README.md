@@ -1,17 +1,32 @@
 # react-native-media-input
 
+## About this package
+
+This package extends React Native's TextInput component to enable keyboard image input on:
+- Android (e.g. Gboard GIFs)
+- iOS (e.g. Pasting images copied to the clipboard)
+
 ## Getting started
 
 `$ npm install react-native-media-input --save`
 
 ### Mostly automatic installation
 
-`$ react-native link react-native-media-input`
+`$ react-native link react-native-media-input` (RN < 0.60)
+
+`$ cd ios/ && pod install`
 
 ## Usage
 ```javascript
-import MediaInput from 'react-native-media-input';
+import {TextInput} from 'react-native';
 
-// TODO: What to do with the module?
-MediaInput;
+const App = () => {
+  const _onImageChange = (event) => {
+    const {uri, linkUri, mime, data} = event.nativeEvent;
+
+    // Do something with this data
+  }
+
+  return <TextInput onImageChange={_onImageChange} />;
+}
 ```
