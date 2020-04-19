@@ -1,6 +1,6 @@
 {
-  "name": "react-native-media-input",
-  "title": "React Native Media Input",
+  "name": "react-native-image-keyboard",
+  "title": "React Native Image Keyboard",
   "version": "1.0.0",
   "description": "Enables clipboard image pasting and GIFs from TextInput.",
   "main": "index.js",
@@ -9,8 +9,8 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Gustash/react-native-media-input.git",
-    "baseUrl": "https://github.com/Gustash/react-native-media-input"
+    "url": "git+https://github.com/Gustash/react-native-image-keyboard.git",
+    "baseUrl": "https://github.com/Gustash/react-native-image-keyboard"
   },
   "keywords": [
     "react-native",

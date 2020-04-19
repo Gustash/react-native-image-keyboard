@@ -1,4 +1,4 @@
-# react-native-media-input
+# react-native-image-keyboard
 
 ## About this package
 
@@ -8,11 +8,11 @@ This package extends React Native's TextInput component to enable keyboard image
 
 ## Getting started
 
-`$ npm install react-native-media-input --save`
+`$ npm install react-native-image-keyboard --save`
 
 ### Mostly automatic installation
 
-`$ react-native link react-native-media-input` (RN < 0.60)
+`$ react-native link react-native-image-keyboard` (RN < 0.60)
 
 `$ cd ios/ && pod install`
 
