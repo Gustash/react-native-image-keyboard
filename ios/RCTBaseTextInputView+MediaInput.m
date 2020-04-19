@@ -13,12 +13,12 @@ static NSArray *acceptedTypes;
                       (NSString *)kUTTypeJPEG];
 }
 
-- (void)setOnMediaInput:(RCTDirectEventBlock)onMediaInput
+- (void)setOnImageChange:(RCTDirectEventBlock)onImageChange
 {
-    objc_setAssociatedObject(self, &key, onMediaInput, OBJC_ASSOCIATION_RETAIN);
+    objc_setAssociatedObject(self, &key, onImageChange, OBJC_ASSOCIATION_RETAIN);
 }
 
-- (RCTDirectEventBlock)onMediaInput
+- (RCTDirectEventBlock)onImageChange
 {
     return objc_getAssociatedObject(self, &key);
 }
@@ -49,7 +49,7 @@ static NSArray *acceptedTypes;
 
 - (void)paste:(id)sender
 {
-    if (!self.onMediaInput) {
+    if (!self.onImageChange) {
         [super paste:sender];
         return;
     }
@@ -88,7 +88,7 @@ static NSArray *acceptedTypes;
             [image writeToFile:path atomically:YES];
 
             NSLog(@"%@", path);
-            self.onMediaInput(@{
+            self.onImageChange(@{
                 @"data": base64,
                 @"uri": path,
                 @"mime": mimeType,
@@ -103,7 +103,7 @@ static NSArray *acceptedTypes;
 - (BOOL)canPerformAction:(SEL)action withSender:(id)sender
 {
     if (action == @selector(paste:) && [self pasteboardHasImages]) {
-        return (BOOL)self.onMediaInput;
+        return (BOOL)self.onImageChange;
     }
 
     return [super canPerformAction:action withSender:sender];

@@ -13,7 +13,7 @@ import com.facebook.react.uimanager.events.Event;
 import com.facebook.react.uimanager.events.RCTEventEmitter;
 
 public class TextInputImageEvent extends Event<TextInputImageEvent> {
-    static final String EVENT_NAME = "topInputMediaEvent";
+    static final String EVENT_NAME = "topImageChangeEvent";
 
     private String mUri;
     private String mLinkUri;

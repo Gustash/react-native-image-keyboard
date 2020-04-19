@@ -40,20 +40,20 @@ public class ReactMediaInputManager extends ReactTextInputManager {
 
     @Nullable
     @Override
-    public Map<String, Object> getExportedCustomBubblingEventTypeConstants() {
-        final Map<String, Object> bubblingEventTypes = super.getExportedCustomBubblingEventTypeConstants();
+    public Map<String, Object> getExportedCustomDirectEventTypeConstants() {
+        final Map<String, Object> directEventTypes = super.getExportedCustomDirectEventTypeConstants();
 
-        if (bubblingEventTypes == null) {
+        if (directEventTypes == null) {
             return null;
         }
 
         MapBuilder.Builder<String, Object> builder = MapBuilder.builder();
 
-        for (Map.Entry<String, Object> event : bubblingEventTypes.entrySet()) {
+        for (Map.Entry<String, Object> event : directEventTypes.entrySet()) {
             builder.put(event.getKey(), event.getValue());
         }
 
-        builder.put(TextInputImageEvent.EVENT_NAME, MapBuilder.of("phasedRegistrationNames", MapBuilder.of("bubbled", "onMediaInput")));
+        builder.put(TextInputImageEvent.EVENT_NAME, MapBuilder.of("registrationName", "onImageChange"));
 
         return builder.build();
     }
@@ -80,8 +80,8 @@ public class ReactMediaInputManager extends ReactTextInputManager {
         return output.toString();
     }
 
-    @ReactProp(name = "onMediaInput")
-    public void setOnMediaInput(final ReactEditText view, boolean onImageInput) {
+    @ReactProp(name = "onImageChange")
+    public void setOnImageChange(final ReactEditText view, boolean onImageInput) {
         if (onImageInput) {
             setImageInputWatcher(new ReactImageInputWatcher(view));
         } else {

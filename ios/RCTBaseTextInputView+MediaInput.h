@@ -3,6 +3,6 @@
 
 @interface RCTBaseTextInputView (MediaInput)
 
-@property (nonatomic, copy, nullable) RCTDirectEventBlock onMediaInput;
+@property (nonatomic, copy, nullable) RCTDirectEventBlock onImageChange;
 
 @end

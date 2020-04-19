@@ -23,7 +23,7 @@ import {Colors} from 'react-native/Libraries/NewAppScreen';
 const App: () => React$Node = () => {
   const [selectedMediaUri, setSelectedMediaUri] = useState<?String>(null);
 
-  const onMedia = useCallback(({nativeEvent}) => {
+  const _onImageChange = useCallback(({nativeEvent}) => {
     const {uri} = nativeEvent;
 
     setSelectedMediaUri(uri);
@@ -44,7 +44,7 @@ const App: () => React$Node = () => {
               )}
             </View>
             <TextInput
-              onMediaInput={onMedia}
+              onImageChange={_onImageChange}
               placeholder={Platform.select({
                 ios: 'Try to paste an image!',
                 android: 'Try to use a GIF from your keyboard!',
