@@ -1,8 +1,8 @@
 # react-native-image-keyboard
 
 iOS             |  Android
-:--------------:|:-------------------------:
-![](https://media.giphy.com/media/U3n3eDqxQDYpfEPwgz/giphy.gif)  |  ![](https://media.giphy.com/media/U3n3eDqxQDYpfEPwgz/giphy.gif)
+:--------------:|:----------------:
+![](https://media.giphy.com/media/U3n3eDqxQDYpfEPwgz/giphy.gif)  |  ![](https://media.giphy.com/media/dxsUmlobx4vpXhpnf5/giphy.gif)
 
 ## About this package
 
