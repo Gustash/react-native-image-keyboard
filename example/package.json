@@ -7,13 +7,12 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint .",
-    "postinstall": "node ../scripts/examples_postinstall.js node_modules/react-native-image-keyboard/"
+    "lint": "eslint ."
   },
   "dependencies": {
     "react": "16.11.0",
     "react-native": "0.62.2",
-    "react-native-image-keyboard": "file:.."
+    "react-native-image-keyboard": "link:.."
   },
   "devDependencies": {
     "@babel/core": "^7.6.2",

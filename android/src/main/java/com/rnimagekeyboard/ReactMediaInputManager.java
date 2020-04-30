@@ -1,4 +1,4 @@
-package com.reactlibrary;
+package com.rnimagekeyboard;
 
 import android.content.ClipDescription;
 import android.content.Context;
