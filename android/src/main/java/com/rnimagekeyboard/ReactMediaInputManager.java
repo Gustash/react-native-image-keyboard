@@ -12,6 +12,7 @@ import android.view.inputmethod.InputConnection;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.os.BuildCompat;
 import androidx.core.view.inputmethod.EditorInfoCompat;
 import androidx.core.view.inputmethod.InputConnectionCompat;
 import androidx.core.view.inputmethod.InputContentInfoCompat;
@@ -138,13 +139,12 @@ public class ReactMediaInputManager extends ReactTextInputManager {
                             public boolean onCommitContent(InputContentInfoCompat inputContentInfo,
                                                            int flags, Bundle opts) {
                                 // read and display inputContentInfo asynchronously
-                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1 && (flags &
-                                        InputConnectionCompat.INPUT_CONTENT_GRANT_READ_URI_PERMISSION) != 0) {
+                                if (BuildCompat.isAtLeastNMR1() && (flags & InputConnectionCompat.INPUT_CONTENT_GRANT_READ_URI_PERMISSION) != 0) {
                                     try {
-                                        inputContentInfo.requestPermission();
+                                      inputContentInfo.requestPermission();
                                     }
                                     catch (Exception e) {
-                                        return false; // return false if failed
+                                      return false;
                                     }
                                 }
 
@@ -190,7 +190,8 @@ public class ReactMediaInputManager extends ReactTextInputManager {
                             }
                         };
 
-                return InputConnectionCompat.createWrapper(ic, outAttrs, callback);
+                // Only wrap non-null input connections otherwise a crash will occur
+                return ic != null ? InputConnectionCompat.createWrapper(ic, outAttrs, callback) : ic;
             }
         };
     }
