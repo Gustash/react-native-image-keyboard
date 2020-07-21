@@ -3,7 +3,6 @@ package com.rnimagekeyboard;
 import android.content.ClipDescription;
 import android.content.Context;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Base64OutputStream;
@@ -142,10 +141,10 @@ public class ReactMediaInputManager extends ReactTextInputManager {
                                 if (BuildCompat.isAtLeastNMR1() &&
                                     (flags & InputConnectionCompat.INPUT_CONTENT_GRANT_READ_URI_PERMISSION) != 0) {
                                     try {
-                                      inputContentInfo.requestPermission();
+                                        inputContentInfo.requestPermission();
                                     }
                                     catch (Exception e) {
-                                      return false;
+                                        return false; // return false if failed
                                     }
                                 }
 
