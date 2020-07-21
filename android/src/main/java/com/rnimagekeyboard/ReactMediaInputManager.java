@@ -139,7 +139,8 @@ public class ReactMediaInputManager extends ReactTextInputManager {
                             public boolean onCommitContent(InputContentInfoCompat inputContentInfo,
                                                            int flags, Bundle opts) {
                                 // read and display inputContentInfo asynchronously
-                                if (BuildCompat.isAtLeastNMR1() && (flags & InputConnectionCompat.INPUT_CONTENT_GRANT_READ_URI_PERMISSION) != 0) {
+                                if (BuildCompat.isAtLeastNMR1() &&
+                                    (flags & InputConnectionCompat.INPUT_CONTENT_GRANT_READ_URI_PERMISSION) != 0) {
                                     try {
                                       inputContentInfo.requestPermission();
                                     }
