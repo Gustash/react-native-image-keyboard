@@ -1,3 +1,4 @@
+
 // metro.config.js
 //
 // with multiple workarounds for this issue with symlinks:
