@@ -27,7 +27,7 @@
     "name": "Gustavo Parreira",
     "email": "gustavotcparreira@gmail.com"
   },
-  "license": "MIT",
+  "license": "GPLv3",
   "licenseFilename": "LICENSE",
   "readmeFilename": "README.md",
   "peerDependencies": {

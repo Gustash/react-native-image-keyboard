@@ -10,10 +10,7 @@ Pod::Spec.new do |s|
                   react-native-media-input
                    DESC
   s.homepage     = "https://github.com/Gustash/react-native-image-keyboard"
-  # brief license entry:
-  s.license      = "MIT"
-  # optional - use expanded license entry instead:
-  # s.license    = { :type => "MIT", :file => "LICENSE" }
+  s.license      = { :type => "GPLv3", :file => "LICENSE" }
   s.authors      = { "Gustavo Parreira" => "gustavotcparreira@gmail.com" }
   s.platforms    = { :ios => "9.0" }
   s.source       = { :git => "https://github.com/Gustash/react-native-image-keyboard.git", :tag => "#{s.version}" }
