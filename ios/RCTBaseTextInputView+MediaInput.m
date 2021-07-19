@@ -96,7 +96,7 @@ static NSArray *acceptedTypes;
         });
     } else {
         // Call the normal paste action
-        [super paste:sender];
+        [[self backedTextInputView] paste:sender];
     }
 }
 
@@ -106,7 +106,6 @@ static NSArray *acceptedTypes;
         return (BOOL)self.onImageChange;
     }
 
-    return [super canPerformAction:action withSender:sender];
+    return NO;
 }
-
 @end
