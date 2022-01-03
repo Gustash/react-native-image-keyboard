@@ -3,6 +3,7 @@ package com.rnimagekeyboard;
 import android.content.ClipDescription;
 import android.content.Context;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Base64OutputStream;
@@ -26,13 +27,19 @@ import com.facebook.react.uimanager.events.EventDispatcher;
 import com.facebook.react.views.textinput.ReactEditText;
 import com.facebook.react.views.textinput.ReactTextInputManager;
 
+import org.apache.commons.io.IOUtils;
+
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Map;
 
 public class ReactMediaInputManager extends ReactTextInputManager {
     private ReactImageInputWatcher mImageInputWatcher;
+
+    private boolean SaveInFiles = false;
 
     ReactMediaInputManager(ReactApplicationContext reactContext) {
         super();
@@ -62,6 +69,10 @@ public class ReactMediaInputManager extends ReactTextInputManager {
         mImageInputWatcher = watcher;
     }
 
+    private void setSaveInFiles(boolean saveInFiles){
+        this.SaveInFiles = saveInFiles;
+    }
+
     private static String loadFile(Context context, Uri contentUri) throws IOException {
         InputStream inputStream = context.getContentResolver().openInputStream(contentUri);
         byte[] buffer = new byte[8192];
@@ -80,6 +91,19 @@ public class ReactMediaInputManager extends ReactTextInputManager {
         return output.toString();
     }
 
+    private static void saveFile(Context context, Uri contentUri) throws IOException {
+        File cacheDir = context.getCacheDir();
+        File target = new File(cacheDir, contentUri.getLastPathSegment());
+        InputStream inputStream = context.getContentResolver().openInputStream(contentUri);
+        assert inputStream != null;
+
+        FileOutputStream outputStream = new FileOutputStream(target);
+
+        IOUtils.copy(inputStream, outputStream);
+
+
+    }
+
     @ReactProp(name = "onImageChange")
     public void setOnImageChange(final ReactEditText view, boolean onImageInput) {
         if (onImageInput) {
@@ -87,6 +111,11 @@ public class ReactMediaInputManager extends ReactTextInputManager {
         } else {
             setImageInputWatcher(null);
         }
+    }
+
+    @ReactProp(name = "saveImageInCache")
+    public void setSaveInCache(final ReactEditText view, boolean saveImageInCache) {
+        setSaveInFiles(saveImageInCache);
     }
 
     private static class ReactImageInputWatcher implements ImageInputWatcher {
@@ -138,7 +167,7 @@ public class ReactMediaInputManager extends ReactTextInputManager {
                             public boolean onCommitContent(InputContentInfoCompat inputContentInfo,
                                                            int flags, Bundle opts) {
                                 // read and display inputContentInfo asynchronously
-                                if (BuildCompat.isAtLeastNMR1() &&
+                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1 &&
                                     (flags & InputConnectionCompat.INPUT_CONTENT_GRANT_READ_URI_PERMISSION) != 0) {
                                     try {
                                         inputContentInfo.requestPermission();
@@ -163,6 +192,7 @@ public class ReactMediaInputManager extends ReactTextInputManager {
 
                                 // Load the data, we have to do this now otherwise we cannot release permissions
                                 try {
+                                    saveFile(reactContext, contentUri);
                                     data = loadFile(reactContext, contentUri);
                                 }
                                 catch(IOException e) {
