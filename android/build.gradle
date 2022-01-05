@@ -27,6 +27,7 @@ buildscript {
     // This avoids unnecessary downloads and potential conflicts when the library is included as a
     // module dependency in an application project.
     // ref: https://docs.gradle.org/current/userguide/tutorial_using_tasks.html#sec:build_script_external_dependencies
+    def kotlin_version = rootProject.ext.has('kotlinVersion') ? rootProject.ext.get('kotlinVersion') : project.properties['ImageKeyboard_kotlinVersion']
     if (project == rootProject) {
         repositories {
             google()
@@ -37,10 +38,21 @@ buildscript {
             classpath 'com.android.tools.build:gradle:3.4.1'
         }
     }
+
+    repositories {
+        google()
+        mavenCentral()
+        jcenter()
+    }
+
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
 }
 
 apply plugin: 'com.android.library'
 apply plugin: 'maven'
+apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion safeExtGet('compileSdkVersion', DEFAULT_COMPILE_SDK_VERSION)
@@ -70,12 +82,17 @@ repositories {
     google()
     mavenCentral()
     jcenter()
+
+    dependencies {
+
+    }
 }
 
 dependencies {
     //noinspection GradleDynamicVersion
     implementation 'com.facebook.react:react-native:+'  // From node_modules
     implementation 'commons-io:commons-io:2.11.0'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.6.10"
 }
 
 def configureReactNativePom(def pom) {
