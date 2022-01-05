@@ -30,13 +30,13 @@ const App = () => {
 
   const _onImageChange = useCallback(({nativeEvent}) => {
     const {uri, data} = nativeEvent;
-    //console.log(nativeEvent)
+    console.log(uri)
 
     setSelectedMediaUri(uri);
   }, []);
 
   return (
-    <KeyboardAvoidingView style={styles.container} behavior='padding'>
+    <KeyboardAvoidingView style={styles.container} behavior={Platform.OS == 'ios' ? 'padding' : undefined}>
       <StatusBar barStyle="dark-content" />
       <SafeAreaView style={styles.container}>
         <ScrollView

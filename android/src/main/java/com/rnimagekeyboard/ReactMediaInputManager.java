@@ -7,6 +7,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Base64OutputStream;
+import android.util.Log;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputConnection;
 
@@ -91,7 +92,7 @@ public class ReactMediaInputManager extends ReactTextInputManager {
         return output.toString();
     }
 
-    private static void saveFile(Context context, Uri contentUri) throws IOException {
+    private static Uri saveFile(Context context, Uri contentUri) throws IOException {
         File cacheDir = context.getCacheDir();
         File target = new File(cacheDir, contentUri.getLastPathSegment());
         InputStream inputStream = context.getContentResolver().openInputStream(contentUri);
@@ -101,7 +102,7 @@ public class ReactMediaInputManager extends ReactTextInputManager {
 
         IOUtils.copy(inputStream, outputStream);
 
-
+        return Uri.fromFile(target);
     }
 
     @ReactProp(name = "onImageChange")
@@ -166,6 +167,7 @@ public class ReactMediaInputManager extends ReactTextInputManager {
                             @Override
                             public boolean onCommitContent(InputContentInfoCompat inputContentInfo,
                                                            int flags, Bundle opts) {
+                                Log.d("CommitContent", "New Content");
                                 // read and display inputContentInfo asynchronously
                                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1 &&
                                     (flags & InputConnectionCompat.INPUT_CONTENT_GRANT_READ_URI_PERMISSION) != 0) {
@@ -189,10 +191,11 @@ public class ReactMediaInputManager extends ReactTextInputManager {
 
                                 Uri contentUri = inputContentInfo.getContentUri();
                                 uri = contentUri.toString();
+                                boolean isContentURI = uri.contains("content://");
 
                                 // Load the data, we have to do this now otherwise we cannot release permissions
                                 try {
-                                    saveFile(reactContext, contentUri);
+                                    uri = saveFile(reactContext, contentUri).toString();
                                     data = loadFile(reactContext, contentUri);
                                 }
                                 catch(IOException e) {
