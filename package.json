@@ -4,6 +4,7 @@
   "version": "2.0.0",
   "description": "Enables clipboard image pasting and GIFs from TextInput.",
   "main": "index.js",
+  "types": "index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -36,6 +37,7 @@
   },
   "devDependencies": {
     "react": "^16.9.0",
-    "react-native": "^0.61.5"
+    "react-native": "^0.61.5",
+    "@types/react-native": "0.61.23"
   }
 }
