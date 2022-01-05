@@ -8,9 +8,9 @@ import com.facebook.react.uimanager.events.RCTEventEmitter
 data class TextInputImageEvent(
         val viewID : Int,
         val uri : String,
-        val linkUri : String,
-        val data : String,
-        val mime : String
+        val linkUri : String?,
+        val data : String?,
+        val mime : String?
 ) : Event<TextInputImageEvent>(viewID) {
 
     companion object {

@@ -56,9 +56,9 @@ class ReactMediaInputManager internal constructor(reactContext: ReactApplication
                 val event = TextInputImageEvent(
                         mReactEditText.id,
                         uri,
-                        linkUri!!,
-                        data!!,
-                        mime!!)
+                        linkUri,
+                        data,
+                        mime)
                 mEventDispatcher?.dispatchEvent(event)
             }
         }
@@ -150,8 +150,9 @@ class ReactMediaInputManager internal constructor(reactContext: ReactApplication
 
         @Throws(IOException::class)
         private fun saveFile(context: Context, contentUri: Uri): Uri {
-            val cacheDir = context.cacheDir
-            val target = File(cacheDir, contentUri.lastPathSegment)
+            val cacheDir = File(context.cacheDir, "MediaInputCache")
+            cacheDir.mkdir() //Create if not existent
+            val target = File(cacheDir, contentUri.lastPathSegment!!)
             val inputStream = context.contentResolver.openInputStream(contentUri)!!
             val outputStream = FileOutputStream(target)
             IOUtils.copy(inputStream, outputStream)
