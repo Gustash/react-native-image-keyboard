@@ -50,7 +50,7 @@ class ReactMediaInputManager internal constructor(reactContext: ReactApplication
     }
 
     private class ReactImageInputWatcher(private val mReactEditText: ReactEditText) : ImageInputWatcher {
-        private val mEventDispatcher: EventDispatcher
+        private val mEventDispatcher: EventDispatcher?
         override fun onImageInput(uri: String?, linkUri: String?, data: String?, mime: String?) {
             if (uri != null) {
                 val event = TextInputImageEvent(
@@ -59,13 +59,13 @@ class ReactMediaInputManager internal constructor(reactContext: ReactApplication
                         linkUri!!,
                         data!!,
                         mime!!)
-                mEventDispatcher.dispatchEvent(event)
+                mEventDispatcher?.dispatchEvent(event)
             }
         }
 
         init {
             val reactContext = mReactEditText.context as ReactContext
-            mEventDispatcher = reactContext.getNativeModule(UIManagerModule::class.java).eventDispatcher
+            mEventDispatcher = reactContext.getNativeModule(UIManagerModule::class.java)?.eventDispatcher
         }
     }
 
