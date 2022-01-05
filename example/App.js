@@ -7,6 +7,7 @@
  */
 
 import React, {useState, useCallback} from 'react';
+import { KeyboardAvoidingView } from 'react-native';
 import {
   SafeAreaView,
   StyleSheet,
@@ -24,13 +25,14 @@ const App: () => React$Node = () => {
   const [selectedMediaUri, setSelectedMediaUri] = useState<?String>(null);
 
   const _onImageChange = useCallback(({nativeEvent}) => {
-    const {uri} = nativeEvent;
+    const {uri, data} = nativeEvent;
+    //console.log(nativeEvent)
 
     setSelectedMediaUri(uri);
   }, []);
 
   return (
-    <View style={styles.container}>
+    <KeyboardAvoidingView style={styles.container} behavior='padding'>
       <StatusBar barStyle="dark-content" />
       <SafeAreaView style={styles.container}>
         <ScrollView
@@ -53,7 +55,7 @@ const App: () => React$Node = () => {
           </View>
         </ScrollView>
       </SafeAreaView>
-    </View>
+    </KeyboardAvoidingView>
   );
 };
 

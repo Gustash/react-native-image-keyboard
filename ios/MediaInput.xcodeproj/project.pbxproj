@@ -10,6 +10,9 @@
 		A0567410244CBC4C00E31645 /* RCTBaseTextInputView+MediaInput.m in Sources */ = {isa = PBXBuildFile; fileRef = A056740E244CBC4C00E31645 /* RCTBaseTextInputView+MediaInput.m */; };
 		A0567415244CBC7500E31645 /* NSData+mimeTypeByGuessingFromData.m in Sources */ = {isa = PBXBuildFile; fileRef = A0567412244CBC7500E31645 /* NSData+mimeTypeByGuessingFromData.m */; };
 		A0567416244CBC7500E31645 /* RCTBaseTextInputViewManager+MediaInput.m in Sources */ = {isa = PBXBuildFile; fileRef = A0567413244CBC7500E31645 /* RCTBaseTextInputViewManager+MediaInput.m */; };
+		F039EFCA2784E4B300C3B651 /* RCTBaseTextInputManagerView+MediaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F039EFC92784E4B300C3B651 /* RCTBaseTextInputManagerView+MediaView.swift */; };
+		F039EFCF2784F0CF00C3B651 /* Data+mimeTypeByGuessingFromData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F039EFCE2784F0CF00C3B651 /* Data+mimeTypeByGuessingFromData.swift */; };
+		F039EFD52784F79300C3B651 /* RCTBaseTextInputView+MediaInput.m in Sources */ = {isa = PBXBuildFile; fileRef = F039EFD42784F79300C3B651 /* RCTBaseTextInputView+MediaInput.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -32,6 +35,10 @@
 		A0567412244CBC7500E31645 /* NSData+mimeTypeByGuessingFromData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+mimeTypeByGuessingFromData.m"; sourceTree = "<group>"; };
 		A0567413244CBC7500E31645 /* RCTBaseTextInputViewManager+MediaInput.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RCTBaseTextInputViewManager+MediaInput.m"; sourceTree = "<group>"; };
 		A0567414244CBC7500E31645 /* RCTBaseTextInputViewManager+MediaInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RCTBaseTextInputViewManager+MediaInput.h"; sourceTree = "<group>"; };
+		F039EFC92784E4B300C3B651 /* RCTBaseTextInputManagerView+MediaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RCTBaseTextInputManagerView+MediaView.swift"; sourceTree = "<group>"; };
+		F039EFCE2784F0CF00C3B651 /* Data+mimeTypeByGuessingFromData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+mimeTypeByGuessingFromData.swift"; sourceTree = "<group>"; };
+		F039EFD42784F79300C3B651 /* RCTBaseTextInputView+MediaInput.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "RCTBaseTextInputView+MediaInput.m"; sourceTree = "<group>"; };
+		F09AAF6F2783710F00E346BA /* MediaInput-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MediaInput-Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +63,9 @@
 		58B511D21A9E6C8500147676 = {
 			isa = PBXGroup;
 			children = (
+				F039EFD42784F79300C3B651 /* RCTBaseTextInputView+MediaInput.m */,
+				F039EFCE2784F0CF00C3B651 /* Data+mimeTypeByGuessingFromData.swift */,
+				F039EFC92784E4B300C3B651 /* RCTBaseTextInputManagerView+MediaView.swift */,
 				A0567411244CBC7500E31645 /* NSData+mimeTypeByGuessingFromData.h */,
 				A0567412244CBC7500E31645 /* NSData+mimeTypeByGuessingFromData.m */,
 				A0567414244CBC7500E31645 /* RCTBaseTextInputViewManager+MediaInput.h */,
@@ -63,6 +73,7 @@
 				A056740F244CBC4C00E31645 /* RCTBaseTextInputView+MediaInput.h */,
 				A056740E244CBC4C00E31645 /* RCTBaseTextInputView+MediaInput.m */,
 				134814211AA4EA7D00B7C361 /* Products */,
+				F09AAF6F2783710F00E346BA /* MediaInput-Bridging-Header.h */,
 			);
 			sourceTree = "<group>";
 		};
@@ -97,6 +108,7 @@
 				TargetAttributes = {
 					58B511DA1A9E6C8500147676 = {
 						CreatedOnToolsVersion = 6.1.1;
+						LastSwiftMigration = 1320;
 					};
 				};
 			};
@@ -123,9 +135,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F039EFCF2784F0CF00C3B651 /* Data+mimeTypeByGuessingFromData.swift in Sources */,
 				A0567415244CBC7500E31645 /* NSData+mimeTypeByGuessingFromData.m in Sources */,
 				A0567410244CBC4C00E31645 /* RCTBaseTextInputView+MediaInput.m in Sources */,
 				A0567416244CBC7500E31645 /* RCTBaseTextInputViewManager+MediaInput.m in Sources */,
+				F039EFCA2784E4B300C3B651 /* RCTBaseTextInputManagerView+MediaView.swift in Sources */,
+				F039EFD52784F79300C3B651 /* RCTBaseTextInputView+MediaInput.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,32 +243,43 @@
 		58B511F01A9E6C8500147676 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/../../../React/**",
 					"$(SRCROOT)/../../react-native/React/**",
 				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = MediaInput;
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "MediaInput-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
 		58B511F11A9E6C8500147676 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 					"$(SRCROOT)/../../../React/**",
 					"$(SRCROOT)/../../react-native/React/**",
 				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = MediaInput;
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "MediaInput-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
