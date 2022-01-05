@@ -81,7 +81,6 @@ class ReactMediaInputManager internal constructor(reactContext: ReactApplication
                         "image/webp"
                 ))
                 val callback = OnCommitContentListener { inputContentInfo, flags, opts ->
-                    Log.d("CommitContent", "New Content")
                     // read and display inputContentInfo asynchronously
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1 &&
                             flags and InputConnectionCompat.INPUT_CONTENT_GRANT_READ_URI_PERMISSION != 0) {
@@ -102,7 +101,6 @@ class ReactMediaInputManager internal constructor(reactContext: ReactApplication
                     val data: String
                     val contentUri = inputContentInfo.contentUri
                     uri = contentUri.toString()
-                    val isContentURI = uri.contains("content://")
 
                     // Load the data, we have to do this now otherwise we cannot release permissions
                     try {
@@ -139,16 +137,10 @@ class ReactMediaInputManager internal constructor(reactContext: ReactApplication
         @Throws(IOException::class)
         private fun loadFile(context: Context, contentUri: Uri): String {
             val inputStream = context.contentResolver.openInputStream(contentUri)
-            val buffer = ByteArray(8192)
-            var bytesRead: Int
             val output = ByteArrayOutputStream()
             val output64 = Base64OutputStream(output, Base64.DEFAULT)
             try {
                 IOUtils.copy(inputStream, output64)
-
-                /*while (inputStream.read(buffer).also { bytesRead = it } != -1) {
-                    output64.write(buffer, 0, bytesRead)
-                }*/
             } catch (e: IOException) {
                 e.printStackTrace()
             }
