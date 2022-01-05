@@ -1,6 +1,6 @@
-# react-native-image-keyboard
+# @duell10111/react-native-image-keyboard
 
-[![NPM Version Badge](https://badge.fury.io/js/react-native-image-keyboard.svg)](https://www.npmjs.com/package/react-native-image-keyboard)
+[![NPM Version Badge](https://badge.fury.io/js/@duell10111%2Freact-native-image-keyboard.svg)](https://www.npmjs.com/package/@duell10111/react-native-image-keyboard)
 
 iOS             |  Android
 :--------------:|:----------------:
@@ -38,5 +38,7 @@ const App = () => {
 ```
 
 ## Credits
+
+Original logic from [Gustash] (https://github.com/Gustash/react-native-image-keyboard)
 
 Android logic based on [stwiname](https://github.com/stwiname)'s PR: https://github.com/facebook/react-native/pull/26088
