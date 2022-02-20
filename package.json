@@ -4,6 +4,7 @@
   "version": "2.0.1",
   "description": "Enables clipboard image pasting and GIFs from TextInput.",
   "main": "index.js",
+  "types": "index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
