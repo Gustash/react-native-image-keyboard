@@ -1,14 +1,15 @@
-import { TextInputProps as RNTextInputProps } from "react-native";
+
+import { NativeSyntheticEvent } from "react-native";
 declare module "react-native" {
-  export type ImageChangeEventData = {
+  type ImageChangeEventData = {
     uri: string;
     data: string;
     linkUri?: string;
     mime?: string;
   };
-  export type ImageChangeEvent = NativeSyntheticEvent<ImageChangeEventData>;
+  type ImageChangeEvent = NativeSyntheticEvent<ImageChangeEventData>;
 
-  export interface TextInputProps extends RNTextInputProps {
-    onImageChange?(event: ImageChangeEvent): void;
+  interface TextInputProps {
+    onImageChange?: (event: ImageChangeEvent) => void;
   }
 }
