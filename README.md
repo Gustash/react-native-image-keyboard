@@ -23,6 +23,20 @@ This package extends React Native's TextInput component to enable keyboard image
 `$ cd ios/ && pod install`
 
 ## Usage
+
+### TypeScript
+
+If you're using TypeScript in your project, you should add the following import
+in your `index.ts` or `index.js` to make TS aware of the `onImageChange` prop type:
+
+```typescript
+// index.ts / index.js
+
+import 'react-native-image-keyboard';
+
+// ...
+```
+
 ```javascript
 import {TextInput} from 'react-native';
 
