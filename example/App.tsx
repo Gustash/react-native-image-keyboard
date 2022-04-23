@@ -2,8 +2,10 @@
  * Sample React Native App
  * https://github.com/facebook/react-native
  *
+ * Generated with the TypeScript template
+ * https://github.com/react-native-community/react-native-template-typescript
+ *
  * @format
- * @flow strict-local
  */
 
 import React, {useState, useCallback} from 'react';
@@ -20,13 +22,13 @@ import {
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 
-const App: () => React$Node = () => {
-  const [selectedMediaUri, setSelectedMediaUri] = useState<?String>(null);
+const App = () => {
+  const [selectedMediaUri, setSelectedMediaUri] = useState<string | null>(null);
 
   const _onImageChange = useCallback(({nativeEvent}) => {
-    const {uri} = nativeEvent;
+    const {uri, linkUri} = nativeEvent;
 
-    setSelectedMediaUri(uri);
+    setSelectedMediaUri(linkUri ?? uri);
   }, []);
 
   return (
@@ -44,6 +46,7 @@ const App: () => React$Node = () => {
               )}
             </View>
             <TextInput
+              // @ts-expect-error module augmentations have issues with deep links
               onImageChange={_onImageChange}
               placeholder={Platform.select({
                 ios: 'Try to paste an image!',
