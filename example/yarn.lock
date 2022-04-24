@@ -5686,8 +5686,7 @@ react-native-gradle-plugin@^0.0.6:
   integrity sha512-eIlgtsmDp1jLC24dRn43hB3kEcZVqx6DUQbR0N1ABXGnMEafm9I3V3dUUeD1vh+Dy5WqijSoEwLNUPLgu5zDMg==
 
 "react-native-image-keyboard@link:..":
-  version "0.0.0"
-  uid ""
+  version "2.1.0"
 
 react-native@0.68.1:
   version "0.68.1"
